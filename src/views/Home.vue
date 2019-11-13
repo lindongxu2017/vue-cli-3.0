@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div class="home">
+		<input type="text" v-model="username">
+		<input type="password" autocomplete="new-password" v-model="password">
+		<input type="button" value="提交" @click="submit">
+	</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import common from '@/api/common'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+	name: 'home',
+	data () {
+		return {
+			username: '',
+			password: ''
+		}
+	},
+	created () {
+		
+	},
+	methods: {
+		submit () {
+			common.login(this.username, this.password).then(res => {
+				console.log(res)
+			})
+		}
+	},
+	components: {
+
+	}
 }
 </script>
